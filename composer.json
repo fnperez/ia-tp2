@@ -1,0 +1,31 @@
+{
+    "name": "utn/ia-tp2",
+    "description": "TP2 IA Genetic Algorithms",
+    "type": "project",
+    "require": {
+        "php": "^7.4",
+        "ramsey/collection": "^1.1",
+        "analog/analog": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
+    },
+    "authors": [
+        {
+            "name": "Facundo Perez",
+            "email": "facundofrba@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IaTp2\\": "src",
+            "GeneticAlgorithm\\": "lib/genetic-algorithm/src",
+            "PW\\GA\\": "lib/pw/ga/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    }
+}

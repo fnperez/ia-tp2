@@ -76,5 +76,4 @@ class Log implements WeightedSelectorInterface
     {
         return $min + (mt_rand() / mt_getrandmax()) * ($max - $min);
     }
-
 }

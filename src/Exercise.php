@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace IaTp2;
 
-use Analog\Analog;
 use PW\GA\Chromosome;
-use PW\GA\ChromosomeGenerator\OrderedList;
 use PW\GA\ChromosomeGeneratorInterface;
 use PW\GA\Config;
-use PW\GA\CrossoverMethod\OrderedList\OrderCrossover;
+use PW\GA\CrossoverMethod\OnePointCrossover;
 use PW\GA\FitnessCalculatorInterface;
 use PW\GA\GeneticAlgorithm;
 use PW\GA\MutateMethod\GeneSwap;
@@ -18,7 +16,6 @@ use PW\GA\SuccessCriteriaInterface;
 class Exercise implements FitnessCalculatorInterface, SuccessCriteriaInterface, ChromosomeGeneratorInterface
 {
     private array $rules;
-    private array $results;
     private int $participants;
     private int $tests;
 
@@ -29,11 +26,6 @@ class Exercise implements FitnessCalculatorInterface, SuccessCriteriaInterface, 
         $this->tests = $tests;
     }
 
-    public function setResults(array $results)
-    {
-        $this->results = $results;
-    }
-
     public function findSolution($options, $iterations)
     {
         $options = array_merge([
@@ -42,7 +34,7 @@ class Exercise implements FitnessCalculatorInterface, SuccessCriteriaInterface, 
 
         $gaEngine = new GeneticAlgorithm(
             $this,
-            new OrderCrossover,
+            new OnePointCrossover,
             new GeneSwap,
             new Config($options)
         );
@@ -62,8 +54,6 @@ class Exercise implements FitnessCalculatorInterface, SuccessCriteriaInterface, 
         $fitness = 0;
         foreach ($this->rules as $index => $rule) {
             $fitness += $rule($tests) ? 0 : -1;
-
-            if (! $rule($tests) && $fitness == -1) Analog::debug("RULE #$index FAILED");
         }
 
         return $fitness;

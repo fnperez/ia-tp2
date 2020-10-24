@@ -27,10 +27,12 @@ class Exercise37
          */
 
         $rules = [
-            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[0], [3, 4, 5, 7, 9]))),
-            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[1], [4, 6, 7, 9, 10]))),
-            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[2], [5, 7, 8, 9, 10]))),
-            fn(array $results) => $results[0][0] === 7,  // Erica obtuvo 7 en la primer prueba
+//            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[0], [3, 4, 5, 7, 9]))),
+//            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[1], [4, 6, 7, 9, 10]))),
+//            fn(array $results) => empty(array_filter($results, fn($tests) => !in_array($tests[2], [5, 7, 8, 9, 10]))),
+
+
+            fn(array $results) => $results[0][0] === 7, // Erica obtuvo 7 en la primer prueba
             fn(array $results) => $results[0][2] > 7, // Erica obtuvo más de 7 en la tercer prueba
             fn(array $results) => $results[1][1] === 10, // Noemi saco 10 en la segunda prueba
             fn(array $results) => array_sum($results[1]) === 22, // Noemi sumó 22 entre las tres pruebas.
